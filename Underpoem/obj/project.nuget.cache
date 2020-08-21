@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "N5xR1N+bUymqhqda4qQ1B87WXtUSUVLwQgaia6DfbLIZ1stLC2GPyQO43Mp9L89ZdYMR7G1tIfbfsua1UeoObA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\maks\\source\\repos\\Underpoem\\Underpoem\\Underpoem.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\maks\\.nuget\\packages\\csfml\\2.5.0\\csfml.2.5.0.nupkg.sha512",
+    "C:\\Users\\maks\\.nuget\\packages\\sfml.audio\\2.5.0\\sfml.audio.2.5.0.nupkg.sha512",
+    "C:\\Users\\maks\\.nuget\\packages\\sfml.graphics\\2.5.0\\sfml.graphics.2.5.0.nupkg.sha512",
+    "C:\\Users\\maks\\.nuget\\packages\\sfml.net\\2.5.0\\sfml.net.2.5.0.nupkg.sha512",
+    "C:\\Users\\maks\\.nuget\\packages\\sfml.system\\2.5.0\\sfml.system.2.5.0.nupkg.sha512",
+    "C:\\Users\\maks\\.nuget\\packages\\sfml.window\\2.5.0\\sfml.window.2.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
