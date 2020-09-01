@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Underpoem.AccessoryClasses;
+using Underpoem.Menu;
 using Underpoem.Params;
 
 namespace Underpoem.UIMenu
@@ -12,7 +13,7 @@ namespace Underpoem.UIMenu
     abstract class MenuDrawer
     {
         private static RectangleShape backGround;
-        private static Button button;
+
 
         public static void Init()
         {
@@ -21,19 +22,7 @@ namespace Underpoem.UIMenu
                 Position = new SFML.System.Vector2f(MenuParams.backX, MenuParams.backY),
                 FillColor = Program.backColor
             };
-
-
-            button = new Button(new Vector2f(300, 80), new Vector2f(200, 45), _text: "new game")
-            {
-                ButtonPressedUpHandler = delegate ()
-                {
-                    /*Random ran = new Random();
-                    backGround.FillColor = new Color((byte)ran.Next(0, 255), (byte)ran.Next(0, 255), (byte)ran.Next(0, 255));*/
-                    Program.Game.Status = GameStatus.Game;
-                },
-                Color = Color.Cyan,
-                MouseClickButton = Mouse.Button.Left,
-            };
+            
         }
     
 
@@ -41,13 +30,30 @@ namespace Underpoem.UIMenu
         {
             Program.Window.Clear(Program.clearColor);
             Program.Window.Draw(backGround);
+            switch(Program.Game.Status)
+            {
+                case GameStatus.MenuMain:
+                    foreach (Button button in MenuMain.Buttons)
+                    {
+                        button.draw();
+                    }
+                    break;
+                case GameStatus.MenuSave:
+                case GameStatus.MenuLoad:
+                    foreach (Button button in MenuLoadAndSave.Buttons)
+                    {
+                        button.draw();
+                    }
+                    break;
+                case GameStatus.MenuAbout:
+                    MenuAbout.Draw();
+                    break;
+            }
 
-            button.draw();
         }
 
         public static void Update()
         {
-
             Draw();
         }
     }

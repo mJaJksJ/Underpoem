@@ -45,5 +45,14 @@ namespace Underpoem.GameEntities
             Sprite.TextureRect = new IntRect(frame.X, frame.Y, frame.Width, frame.Height);
         }
 
+        public void DeepCopy(EntityMob copy)
+        {
+            limHealth = copy.limHealth;
+            currentHealth = copy.currentHealth;
+            positionX = copy.positionX;
+            positionY = copy.positionY;
+            speed = copy.speed;
+        }
+
     }
 }

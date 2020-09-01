@@ -36,12 +36,12 @@ namespace Underpoem.UIGame
 
         public static void UpdateLove()
         {
-            Love.DisplayedString = $"Love: {Player.ParamLove}";
+            Love.DisplayedString = $"Love: {Program.Game.Player.ParamLove}";
         }
 
         public static void UpdateViolence()
         {
-            Violence.DisplayedString = $"Violence: {Player.ParamLevelOfViolence}";
+            Violence.DisplayedString = $"Violence: {Program.Game.Player.ParamLevelOfViolence}";
         }
 
     }

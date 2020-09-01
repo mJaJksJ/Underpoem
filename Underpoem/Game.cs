@@ -15,7 +15,7 @@ using Underpoem.UIMenu;
 
 namespace Underpoem
 {
-    enum GameStatus { Game, Menu };
+    enum GameStatus { Game, MenuMain, MenuLoad, MenuSave, MenuAbout };
     [Serializable]
     class Game
     {
@@ -25,7 +25,7 @@ namespace Underpoem
         public Player Player { get; private set; }
         
         //is these temp variable field and property that in future will be in class Level?
-        private readonly int entitiesMaxCount;
+        private int entitiesMaxCount;
         public RectangleShape Arena { get; private set; }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Underpoem
         /// </summary>
         public Game()
         {
-            Status = GameStatus.Menu;
+            Status = GameStatus.MenuMain;
             Arena = new RectangleShape(new Vector2f(Underpoem.ArenaParams.width, Underpoem.ArenaParams.height))
             {
                 Position = new Vector2f(Underpoem.ArenaParams.x, Underpoem.ArenaParams.y),
@@ -62,7 +62,10 @@ namespace Underpoem
 
                 switch(Status)
                 {
-                    case GameStatus.Menu:
+                    case GameStatus.MenuMain:
+                    case GameStatus.MenuSave:
+                    case GameStatus.MenuLoad:
+                    case GameStatus.MenuAbout:
                         MenuDrawer.Update();
                         break;
 
@@ -78,6 +81,10 @@ namespace Underpoem
 
         public void Update()
         {
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
+            {
+                Status = GameStatus.MenuMain;
+            }
             Player.Update();
             foreach(IMonster monster in Monsters.Values)
             {
@@ -97,7 +104,22 @@ namespace Underpoem
 
             
         }
-        
+
+
+
+        public void DeepCopy(Game copy)
+        {
+            Status = copy.Status;
+            monstersFactory = copy.monstersFactory;
+            Monsters.Clear();
+            foreach (IMonster monster in copy.Monsters.Values)
+            {
+                Monsters.Add(monster.Ip, monster);
+            }
+            Player.DeepCopy(copy.Player);
+            entitiesMaxCount = copy.entitiesMaxCount;
+            Arena = copy.Arena;
+        }
 
 
 
@@ -129,21 +151,6 @@ namespace Underpoem
             return isIntersect;
         }
 
-        public bool Save()
-        {
-            try
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                using (FileStream fs = new FileStream("flowey.dat", FileMode.OpenOrCreate))
-                {
-                    formatter.Serialize(fs, this);
-                }
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
+        
     }
 }

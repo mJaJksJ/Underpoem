@@ -20,7 +20,6 @@ namespace Underpoem
         {
             Window = new RenderWindow(new VideoMode(800, 600), "Underpoem");
             Window.SetVerticalSyncEnabled(true);
-            Window.Closed += Save;
             Window.Closed += WindowClose;
             Game = new Game();
             GameDrawer.Init();
@@ -56,9 +55,5 @@ namespace Underpoem
             Window.Close();
         }
 
-        private static void Save(object sender, EventArgs e)
-        {
-            Game.Save();
-        }
     }
 }

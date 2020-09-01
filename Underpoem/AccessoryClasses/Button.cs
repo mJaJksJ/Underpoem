@@ -7,10 +7,12 @@ using System.Text;
 
 namespace Underpoem.AccessoryClasses
 {
-    delegate void ButtonPressedUpHandler();
+    delegate void ButtonPressedUpHandler(object sender);
 
     class Button
     {
+        public int Ip { get; set; }
+
         private Vector2f position;
         private Vector2f size;
 
@@ -97,7 +99,7 @@ namespace Underpoem.AccessoryClasses
                 if(isPressed)
                 {
                     isPressed = false;
-                    ButtonPressedUpHandler?.Invoke();
+                    ButtonPressedUpHandler?.Invoke(this);
                 }
             }
 

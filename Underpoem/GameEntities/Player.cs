@@ -14,8 +14,8 @@ namespace Underpoem.GameEntities
     {
         enum Personality {Frisk, Chara};
 
-        public static int ParamLove { get; private set; }
-        public static int ParamLevelOfViolence { get; private set; }
+        public int ParamLove { get; private set; }
+        public int ParamLevelOfViolence { get; private set; }
         private Personality personStatus;
         
 
@@ -231,6 +231,19 @@ namespace Underpoem.GameEntities
                     GameUIPlayerStatistic.UpdateViolence();
                     break;
             }
+        }
+
+        //enum Personality { Frisk, Chara };
+
+        //public static int ParamLove { get; private set; }
+        //public static int ParamLevelOfViolence { get; private set; }
+        //private Personality personStatus;
+        public void DeepCopy(Player copy)
+        {
+            base.DeepCopy(copy);
+            ParamLove = copy.ParamLove;
+            ParamLevelOfViolence = copy.ParamLevelOfViolence;
+            personStatus = copy.personStatus;
         }
             
     }
